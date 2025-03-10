@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadow_boxing/features/game/dialogs/pause_dialog.dart';
 import 'package:shadow_boxing/features/game/widgets/game_timer.dart';
+import 'package:shadow_boxing/features/game/widgets/play_container.dart';
+import 'package:shadow_boxing/features/game/widgets/top_notice.dart';
 import 'package:shadow_boxing/shared/widgets/base_scaffold.dart';
 import 'package:shadow_boxing/shared/widgets/custom_icon_button.dart';
 
@@ -41,6 +43,7 @@ class _GamePlayPageState extends State<GamePlayPage> {
               //
               //Timer
               GameTimer(),
+              TopNotice(),
               //
               //
               // Pause button
@@ -59,28 +62,11 @@ class _GamePlayPageState extends State<GamePlayPage> {
               ),
             ],
           ),
-          // 1. Hints Section
-          // AIHintsSection(),
-
-          // 2. Word Display Section
-          // Flexible(
-          //   child: Container(
-          //     margin: EdgeInsets.symmetric(horizontal: 16),
-          //     decoration: BoxDecoration(
-          //       gradient: LinearGradient(
-          //         colors: [
-          //           Theme.of(context).colorScheme.primary.withOpacity(0.25),
-          //           Theme.of(context).colorScheme.primary.withOpacity(0.25),
-          //         ],
-          //       ),
-          //       borderRadius: BorderRadius.circular(20),
-          //     ),
-          //     child: GuessedItem(),
-          //   ),
-          // ),
-
-          // // 3. Guess Input Section
-          // UserGuessSection(),
+          
+          // Game Container
+          Expanded(
+            child: PlayContainer(),
+          ),
         ],
       ),
     );

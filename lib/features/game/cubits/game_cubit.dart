@@ -5,8 +5,20 @@ import 'package:shadow_boxing/features/game/cubits/game_state.dart';
 class GameCubit extends Cubit<GameState> {
   GameCubit() : super(GameState());
 
-
   void setGameMode({required GameMode gameMode}) {
     emit(state.copyWith(gameMode: gameMode));
+  }
+
+  void initializeGame({
+    required int gameRounds,
+    required bool isPlayerOneStarting,
+  }) {
+    emit(
+      state.copyWith(
+        gameStatus: GameStatus.loaded,
+        rounds: gameRounds,
+        isPlayerOneStarting: isPlayerOneStarting,
+      ),
+    );
   }
 }
