@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shadow_boxing/features/game/cubits/game_cubit.dart';
 
 class GameTimer extends StatelessWidget {
   const GameTimer({super.key});
@@ -13,7 +14,7 @@ class GameTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Duration? durationLeft = context.watch<GameCubit>().state.timeLeft;
+    var gameState = context.watch<GameCubit>().state;
 
     return Container(
       decoration: BoxDecoration(
@@ -25,7 +26,8 @@ class GameTimer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            _formatTime( Duration.zero),
+            // _formatTime( Duration.zero),
+            "${gameState.mainPlayerScore } : ${gameState.otherPlayerScore}",
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.onSecondary,

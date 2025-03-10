@@ -21,7 +21,7 @@ class _GameConfigPageState extends State<GameConfigPage> {
   // String userTheme = "";
   // int gameDuration = 30;
   int rounds = 1;
-  bool? isPlayerOneStarting;
+  bool? isMainPlayerStarting;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _GameConfigPageState extends State<GameConfigPage> {
           PlayerSelector(
             onPlayerSelected: (int player) {
               // Handle player selection
-              isPlayerOneStarting = player == 1;
+              isMainPlayerStarting = player == 1;
             },
           ),
           SizedBox(height: 16),
@@ -75,7 +75,7 @@ class _GameConfigPageState extends State<GameConfigPage> {
                   isLoading
                       ? null
                       : () {
-                        if (isPlayerOneStarting == null) {
+                        if (isMainPlayerStarting == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Please select who starts'),
@@ -86,7 +86,7 @@ class _GameConfigPageState extends State<GameConfigPage> {
                         // Initialize Game
                         gameCubit.initializeGame(
                           gameRounds: rounds,
-                          isPlayerOneStarting: isPlayerOneStarting!,  
+                          isMainPlayerStarting: isMainPlayerStarting!,  
                         );
                         context.router.push(GamePlayRoute());
                       },

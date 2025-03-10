@@ -22,7 +22,7 @@ class PlayTypeDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomButton(
-              text: "Single Player",
+              text: "Instant Play",
               onTap: () => onGameModeSelected(GameMode.single),
             ),
             

@@ -22,8 +22,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/person.jpg
   AssetGenImage get person => const AssetGenImage('assets/images/person.jpg');
 
+  /// File path: assets/images/winner_trophy.png
+  AssetGenImage get winnerTrophy =>
+      const AssetGenImage('assets/images/winner_trophy.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [buttonBg, pageBg, person];
+  List<AssetGenImage> get values => [buttonBg, pageBg, person, winnerTrophy];
 }
 
 class $AssetsLogoGen {

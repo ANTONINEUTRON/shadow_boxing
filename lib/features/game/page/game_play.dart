@@ -43,7 +43,7 @@ class _GamePlayPageState extends State<GamePlayPage> {
               //
               //Timer
               GameTimer(),
-              TopNotice(),
+              // TopNotice(),
               //
               //
               // Pause button
@@ -57,7 +57,7 @@ class _GamePlayPageState extends State<GamePlayPage> {
                       builder: (context) => PauseDialog(),
                     );
                   },
-                  icon: const Icon(Icons.pause_circle_filled_outlined),
+                  icon: const Icon(Icons.camera),
                 ),
               ),
             ],
