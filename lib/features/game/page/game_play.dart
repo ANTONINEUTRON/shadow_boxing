@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadow_boxing/features/game/dialogs/pause_dialog.dart';
 import 'package:shadow_boxing/features/game/widgets/game_timer.dart';
 import 'package:shadow_boxing/features/game/widgets/play_container.dart';
-import 'package:shadow_boxing/features/game/widgets/top_notice.dart';
+import 'package:shadow_boxing/features/game/widgets/round_notice.dart';
 import 'package:shadow_boxing/shared/widgets/base_scaffold.dart';
 import 'package:shadow_boxing/shared/widgets/custom_icon_button.dart';
 
@@ -53,7 +53,7 @@ class _GamePlayPageState extends State<GamePlayPage> {
                 //
                 //Timer
                 GameTimer(),
-                // TopNotice(),
+                TopNotice(),
                 //
                 //
                 // Pause button

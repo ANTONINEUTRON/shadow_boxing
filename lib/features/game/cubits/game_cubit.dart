@@ -21,26 +21,18 @@ class GameCubit extends Cubit<GameState> {
     emit(
       state.copyWith(
         gameStatus: GameStatus.loaded,
-        rounds: gameRounds,
+        round: gameRounds,
         isMainPlayerStarting: isMainPlayerStarting,
       ),
     );
   }
 
+  void playNextRound(){
+    emit(state.copyWith(round: state.round + 1));
+  }
+
   void recordMainPlayerMove({required Set<Moves> mainPlayerMoves}) {
-    // var mainPlayerMoves = [...state.mainPlayerMoves];
-
-    // if(!mainPlayerMoves.contains(move)){
-    //   mainPlayerMoves.add(move);
-    // }
-
-    // emit(
-    //   state.copyWith(
-    //     mainPlayerMoves: [...state],
-    //     gameStatus: GameStatus.playing,
-    //   ),
-    // );
-
+    
     // check for who is attacking
     // if main player is attacking, get other player's move
     //// compare moves, if attacking matches defender moves, record moves and switch attacking player
@@ -94,7 +86,7 @@ class GameCubit extends Cubit<GameState> {
         attackingPlayer: attackingPlayer,
         mainPlayerMoves: mainPlayerMoves,
         otherPlayerMoves: otherPlayerMoves,
-        notice: isMainPlayerAttacking ? "Your Turn" : "Opponent's Turn",
+        roundsNotice: isMainPlayerAttacking ? "Your Turn" : "Opponent's Turn",
         gameStatus:
             mainPlayerMoves.length < 4
                 ? GameStatus.playShowing
@@ -111,7 +103,8 @@ class GameCubit extends Cubit<GameState> {
     );
 
     // Check for winner after game is completed
-    if (mainPlayerMoves.length >= 4 || (state.mainPlayerScore - state.otherPlayerScore).abs() >= 3) {
+    if (mainPlayerMoves.length >= 4 ||
+        (state.mainPlayerScore - state.otherPlayerScore).abs() >= 3) {
       GameWinner? winner;
       if (state.mainPlayerScore > state.otherPlayerScore) {
         winner = GameWinner.mainPlayerWon;
@@ -141,9 +134,7 @@ class GameCubit extends Cubit<GameState> {
     return {...previousMoves, randomMove};
   }
 
-  void resetState(){
-    emit(GameState(
-      isMainPlayerStarting: state.isMainPlayerStarting,
-    ));
+  void resetState() {
+    emit(GameState(isMainPlayerStarting: !state.isMainPlayerStarting));
   }
 }
