@@ -111,7 +111,7 @@ class GameCubit extends Cubit<GameState> {
     );
 
     // Check for winner after game is completed
-    if (mainPlayerMoves.length >= 3 || (state.mainPlayerScore - state.otherPlayerScore).abs() >= 3) {
+    if (mainPlayerMoves.length >= 4 || (state.mainPlayerScore - state.otherPlayerScore).abs() >= 3) {
       GameWinner? winner;
       if (state.mainPlayerScore > state.otherPlayerScore) {
         winner = GameWinner.mainPlayerWon;
@@ -139,5 +139,11 @@ class GameCubit extends Cubit<GameState> {
     var randomMove = moves[random.nextInt(moves.length)];
 
     return {...previousMoves, randomMove};
+  }
+
+  void resetState(){
+    emit(GameState(
+      isMainPlayerStarting: state.isMainPlayerStarting,
+    ));
   }
 }

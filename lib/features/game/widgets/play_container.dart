@@ -6,9 +6,6 @@ import 'package:shadow_boxing/data/enums/player.dart';
 import 'package:shadow_boxing/features/game/cubits/game_cubit.dart';
 import 'package:shadow_boxing/features/game/dialogs/game_over_dialog.dart';
 import 'package:shadow_boxing/features/game/widgets/player_card.dart';
-import 'dart:math';
-
-import 'package:shadow_boxing/gen/assets.gen.dart';
 
 class PlayContainer extends StatefulWidget {
   const PlayContainer({super.key});
@@ -60,7 +57,6 @@ class _PlayContainerState extends State<PlayContainer>
             if (details.velocity.pixelsPerSecond.dy > 0) {
               // Swipe down
               if (!mainPlayerMoves.contains(Moves.bottom)) {
-                setState(() => bottomArrowColor = Colors.red);
                 gameCubit.recordMainPlayerMove(
                   mainPlayerMoves: {...mainPlayerMoves, Moves.bottom},
                 );
@@ -68,7 +64,6 @@ class _PlayContainerState extends State<PlayContainer>
             } else if (details.velocity.pixelsPerSecond.dy < 0) {
               // Swipe up
               if (!mainPlayerMoves.contains(Moves.top)) {
-                setState(() => topArrowColor = Colors.red);
                 gameCubit.recordMainPlayerMove(
                   mainPlayerMoves: {...mainPlayerMoves, Moves.top},
                 );
@@ -79,15 +74,13 @@ class _PlayContainerState extends State<PlayContainer>
             if (details.velocity.pixelsPerSecond.dx > 0) {
               // Swipe right
               if (!mainPlayerMoves.contains(Moves.right)) {
-                setState(() => rightArrowColor = Colors.red);
-                gameCubit.recordMainPlayerMove(
+                
+              }gameCubit.recordMainPlayerMove(
                   mainPlayerMoves: {...mainPlayerMoves, Moves.right},
                 );
-              }
             } else if (details.velocity.pixelsPerSecond.dx < 0) {
               // Swipe left
               if (!mainPlayerMoves.contains(Moves.left)) {
-                setState(() => leftArrowColor = Colors.red);
                 gameCubit.recordMainPlayerMove(
                   mainPlayerMoves: {...mainPlayerMoves, Moves.left},
                 );
@@ -154,7 +147,7 @@ class _PlayContainerState extends State<PlayContainer>
                     child: Icon(
                       Icons.keyboard_double_arrow_up,
                       size: 48,
-                      color: topArrowColor,
+                      color: mainPlayerMoves.contains(Moves.top) ? Colors.red : Colors.black,
                     ),
                   ),
                 ),
@@ -168,7 +161,7 @@ class _PlayContainerState extends State<PlayContainer>
                     child: Icon(
                       Icons.keyboard_double_arrow_down,
                       size: 48,
-                      color: bottomArrowColor,
+                      color: mainPlayerMoves.contains(Moves.bottom) ? Colors.red : Colors.black,
                     ),
                   ),
                 ),
@@ -182,7 +175,7 @@ class _PlayContainerState extends State<PlayContainer>
                     child: Icon(
                       Icons.keyboard_double_arrow_left,
                       size: 48,
-                      color: leftArrowColor,
+                      color: mainPlayerMoves.contains(Moves.left) ? Colors.red : Colors.black,
                     ),
                   ),
                 ),
@@ -196,7 +189,7 @@ class _PlayContainerState extends State<PlayContainer>
                     child: Icon(
                       Icons.keyboard_double_arrow_right,
                       size: 48,
-                      color: rightArrowColor,
+                      color: mainPlayerMoves.contains(Moves.right) ? Colors.red : Colors.black,
                     ),
                   ),
                 ),
@@ -214,20 +207,20 @@ class _PlayContainerState extends State<PlayContainer>
     switch (moves) {
       case Moves.right:
         return Matrix4.identity()
-          ..setEntry(3, 2, 0.01)
-          ..rotateY(-0.25); // Left
+          ..setEntry(3, 2, 0.002) // Lower perspective distortion
+          ..rotateY(-0.3); // Slightly more natural angle
       case Moves.left:
         return Matrix4.identity()
-          ..setEntry(3, 2, 0.01)
-          ..rotateY(0.25); // Right
+          ..setEntry(3, 2, 0.002)
+          ..rotateY(0.3);
       case Moves.bottom:
         return Matrix4.identity()
-          ..setEntry(3, 2, 0.01)
-          ..rotateX(0.25); // Up
+          ..setEntry(3, 2, 0.002)
+          ..rotateX(0.3);
       case Moves.top:
         return Matrix4.identity()
-          ..setEntry(3, 2, 0.01)
-          ..rotateX(-0.25); // Down
+          ..setEntry(3, 2, 0.002)
+          ..rotateX(-0.3);
       default:
         return Matrix4.identity();
     }

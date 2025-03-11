@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shadow_boxing/core/routes.gr.dart';
 import 'package:shadow_boxing/data/enums/game_winner.dart';
 import 'package:shadow_boxing/features/game/cubits/game_cubit.dart';
 import 'package:shadow_boxing/shared/widgets/custom_button.dart';
@@ -11,7 +12,8 @@ class GameOverDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var gameWinner = context.watch<GameCubit>().state.gameWinner;
+    var cubit = context.watch<GameCubit>();
+    var gameWinner = cubit.state.gameWinner;
     var message = "";
     switch (gameWinner) {
       case GameWinner.mainPlayerWon:
@@ -67,13 +69,18 @@ class GameOverDialog extends StatelessWidget {
                 CustomButton(
                   text: "Home",
                   onTap: () {
-                    context.router.popUntilRoot();
+                    context.router.replaceAll([HomeRoute()]);
                   },
                 ),
-                CustomButton(text: "Replay", onTap: () {
-                  //reset game after saving
-                  // Pop the dialog
-                },),
+                CustomButton(
+                  text: "Replay",
+                  onTap: () {
+                    //reset game after saving
+                    cubit.resetState();
+                    // Pop the dialog
+                    context.router.pop();
+                  },
+                ),
               ],
             ),
           ],

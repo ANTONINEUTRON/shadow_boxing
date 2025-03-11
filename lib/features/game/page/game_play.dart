@@ -33,41 +33,52 @@ class _GamePlayPageState extends State<GamePlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      child: Column(
-        children: [
-          // Top Row consisting timer and pause button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //
-              //Timer
-              GameTimer(),
-              // TopNotice(),
-              //
-              //
-              // Pause button
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                child: CustomIconButton(
-                  onPressed: () {
-                    // context.read<GameCubit>().pauseGame();
-                    showDialog(
-                      context: context,
-                      builder: (context) => PauseDialog(),
-                    );
-                  },
-                  icon: const Icon(Icons.camera),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return PauseDialog();
+          },
+        );
+      },
+      child: BaseScaffold(
+        child: Column(
+          children: [
+            // Top Row consisting timer and pause button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //
+                //Timer
+                GameTimer(),
+                // TopNotice(),
+                //
+                //
+                // Pause button
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                  child: CustomIconButton(
+                    onPressed: () {
+                      // context.read<GameCubit>().pauseGame();
+                      showDialog(
+                        context: context,
+                        builder: (context) => PauseDialog(),
+                      );
+                    },
+                    icon: const Icon(Icons.camera),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          
-          // Game Container
-          Expanded(
-            child: PlayContainer(),
-          ),
-        ],
+              ],
+            ),
+            
+            // Game Container
+            Expanded(
+              child: PlayContainer(),
+            ),
+          ],
+        ),
       ),
     );
   }

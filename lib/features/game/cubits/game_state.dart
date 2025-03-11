@@ -30,6 +30,19 @@ class GameState extends Equatable {
     this.gameWinner = GameWinner.none,
   });
 
+  // const GameState.empty()
+  //     : gameStatus = GameStatus.initial,
+  //       gameMode = null,
+  //       isMainPlayerStarting = true,
+  //       rounds = 1,
+  //       notice = "Round 1",
+  //       mainPlayerMoves = const {},
+  //       otherPlayerMoves = const {},
+  //       attackingPlayer = Player.mainPlayer,
+  //       mainPlayerScore = 0,
+  //       otherPlayerScore = 0,
+  //       gameWinner = GameWinner.none;
+
   final GameMode? gameMode;
   final GameStatus gameStatus;
   final bool isMainPlayerStarting;

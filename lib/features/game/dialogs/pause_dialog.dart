@@ -1,11 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shadow_boxing/shared/widgets/custom_button.dart';
 
 class PauseDialog extends StatelessWidget {
-  const PauseDialog({
-    super.key,
-  });
-
+  const PauseDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +19,13 @@ class PauseDialog extends StatelessWidget {
             CustomButton(
               text: "RESUME",
               onTap: () {
-                // Close dialog
-                Navigator.pop(context);
-
-                //Start animation
-                // animationController.forward();
-
-                // resume timer
-                // context.read<TimerBloc>().start();
+                context.router.pop();
               },
             ),
             // ToggleSFXButton(animationController: animationController),
             CustomButton(
               text: "HELP",
-              onTap: null
+              onTap: null,
               // () {
               //   Navigator.push(
               //     context,
@@ -45,12 +36,7 @@ class PauseDialog extends StatelessWidget {
             CustomButton(
               text: "END GAME",
               onTap: () {
-                Navigator.pop(context);
-
-                // Navigator.pushReplacement(
-                //   context,
-                //   GameOverPage.route(),
-                // );
+                context.router.popUntilRoot();
               },
             ),
           ],
@@ -61,10 +47,7 @@ class PauseDialog extends StatelessWidget {
 }
 
 class ToggleSFXButton extends StatelessWidget {
-  const ToggleSFXButton({
-    super.key,
-    required this.animationController,
-  });
+  const ToggleSFXButton({super.key, required this.animationController});
 
   final AnimationController animationController;
 
@@ -75,7 +58,7 @@ class ToggleSFXButton extends StatelessWidget {
     return CustomButton(
       text: "SOUND",
       icon: Icon(
-        // appBloc.state.sfxToPlay ? Icons.volume_up : 
+        // appBloc.state.sfxToPlay ? Icons.volume_up :
         Icons.volume_off,
         color: Theme.of(context).colorScheme.secondary,
         size: 35,

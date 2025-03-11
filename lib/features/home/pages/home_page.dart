@@ -62,9 +62,8 @@ class HomePage extends StatelessWidget {
                               gameMode: gameMode,
                             );
                             //Navigate
-                            context.router.push(
-                              GameConfigRoute(),
-                            );
+                            context.router.push(GameConfigRoute());
+                            context.router.pop();
                           },
                         );
                       },

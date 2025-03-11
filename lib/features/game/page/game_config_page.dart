@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadow_boxing/core/routes.gr.dart';
 import 'package:shadow_boxing/features/game/cubits/game_cubit.dart';
+import 'package:shadow_boxing/features/game/dialogs/pause_dialog.dart';
 import 'package:shadow_boxing/features/game/widgets/player_selector.dart';
 import 'package:shadow_boxing/features/game/widgets/round_chooser.dart';
 import 'package:shadow_boxing/shared/widgets/base_scaffold.dart';
@@ -49,9 +50,9 @@ class _GameConfigPageState extends State<GameConfigPage> {
           Container(
             child: Text(
               "Game Setup",
-              style: Theme.of(
-                context,
-              ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(height: 16),
@@ -70,7 +71,7 @@ class _GameConfigPageState extends State<GameConfigPage> {
             padding: const EdgeInsets.all(16.0),
             child: CustomRectButton(
               text: 'Play',
-
+    
               onTap:
                   isLoading
                       ? null
@@ -86,9 +87,9 @@ class _GameConfigPageState extends State<GameConfigPage> {
                         // Initialize Game
                         gameCubit.initializeGame(
                           gameRounds: rounds,
-                          isMainPlayerStarting: isMainPlayerStarting!,  
+                          isMainPlayerStarting: isMainPlayerStarting!,
                         );
-                        context.router.push(GamePlayRoute());
+                        context.router.replace(GamePlayRoute());
                       },
             ),
           ),
@@ -97,13 +98,13 @@ class _GameConfigPageState extends State<GameConfigPage> {
     );
   }
 
-  String? _validateTheme(String? value) {
-    if (value == null || value.isEmpty) return "Enter a theme";
+  // String? _validateTheme(String? value) {
+  //   if (value == null || value.isEmpty) return "Enter a theme";
 
-    final wordCount =
-        value.trim().split(' ').where((word) => word.isNotEmpty).length;
-    return wordCount > 2
-        ? 'Theme should not be more than 2 words a good hint is to enter something around your interest'
-        : null;
-  }
+  //   final wordCount =
+  //       value.trim().split(' ').where((word) => word.isNotEmpty).length;
+  //   return wordCount > 2
+  //       ? 'Theme should not be more than 2 words a good hint is to enter something around your interest'
+  //       : null;
+  // }
 }

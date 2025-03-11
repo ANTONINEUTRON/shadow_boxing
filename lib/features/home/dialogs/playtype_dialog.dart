@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shadow_boxing/data/enums/game_mode.dart';
 import 'package:shadow_boxing/shared/widgets/custom_button.dart';
 
@@ -23,7 +22,9 @@ class PlayTypeDialog extends StatelessWidget {
           children: [
             CustomButton(
               text: "Instant Play",
-              onTap: () => onGameModeSelected(GameMode.single),
+              onTap: () {
+                onGameModeSelected(GameMode.single);
+              },
             ),
             
             CustomButton(
