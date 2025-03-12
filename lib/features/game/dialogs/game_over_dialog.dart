@@ -5,7 +5,6 @@ import 'package:shadow_boxing/core/routes.gr.dart';
 import 'package:shadow_boxing/data/enums/game_winner.dart';
 import 'package:shadow_boxing/features/game/cubits/game_cubit.dart';
 import 'package:shadow_boxing/shared/widgets/custom_button.dart';
-import 'package:shadow_boxing/shared/widgets/custom_rect_button.dart';
 
 class GameOverDialog extends StatelessWidget {
   const GameOverDialog({super.key});
@@ -76,9 +75,9 @@ class GameOverDialog extends StatelessWidget {
                   text: "Replay",
                   onTap: () {
                     //reset game after saving
-                    cubit.resetState();
+                    // cubit.resetState();
                     // Pop the dialog
-                    context.router.pop();
+                    context.router.replace(GameConfigRoute());
                   },
                 ),
               ],

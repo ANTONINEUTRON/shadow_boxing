@@ -22,12 +22,12 @@ Game _$GameFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Game {
   int get id => throw _privateConstructorUsedError;
-  String get player1 => throw _privateConstructorUsedError;
-  String get player2 => throw _privateConstructorUsedError;
+  List<String> get players =>
+      throw _privateConstructorUsedError; // player1, player2
   int get player1Score => throw _privateConstructorUsedError;
   int get player2Score => throw _privateConstructorUsedError;
-  List<int> get player1Moves => throw _privateConstructorUsedError;
-  List<int> get player2Moves => throw _privateConstructorUsedError;
+  List<Moves> get player1Moves => throw _privateConstructorUsedError;
+  List<Moves> get player2Moves => throw _privateConstructorUsedError;
 
   /// Serializes this Game to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,12 +45,11 @@ abstract class $GameCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    String player1,
-    String player2,
+    List<String> players,
     int player1Score,
     int player2Score,
-    List<int> player1Moves,
-    List<int> player2Moves,
+    List<Moves> player1Moves,
+    List<Moves> player2Moves,
   });
 }
 
@@ -70,8 +69,7 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
   @override
   $Res call({
     Object? id = null,
-    Object? player1 = null,
-    Object? player2 = null,
+    Object? players = null,
     Object? player1Score = null,
     Object? player2Score = null,
     Object? player1Moves = null,
@@ -84,16 +82,11 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as int,
-            player1:
-                null == player1
-                    ? _value.player1
-                    : player1 // ignore: cast_nullable_to_non_nullable
-                        as String,
-            player2:
-                null == player2
-                    ? _value.player2
-                    : player2 // ignore: cast_nullable_to_non_nullable
-                        as String,
+            players:
+                null == players
+                    ? _value.players
+                    : players // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             player1Score:
                 null == player1Score
                     ? _value.player1Score
@@ -108,12 +101,12 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
                 null == player1Moves
                     ? _value.player1Moves
                     : player1Moves // ignore: cast_nullable_to_non_nullable
-                        as List<int>,
+                        as List<Moves>,
             player2Moves:
                 null == player2Moves
                     ? _value.player2Moves
                     : player2Moves // ignore: cast_nullable_to_non_nullable
-                        as List<int>,
+                        as List<Moves>,
           )
           as $Val,
     );
@@ -130,12 +123,11 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    String player1,
-    String player2,
+    List<String> players,
     int player1Score,
     int player2Score,
-    List<int> player1Moves,
-    List<int> player2Moves,
+    List<Moves> player1Moves,
+    List<Moves> player2Moves,
   });
 }
 
@@ -152,8 +144,7 @@ class __$$GameImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? player1 = null,
-    Object? player2 = null,
+    Object? players = null,
     Object? player1Score = null,
     Object? player2Score = null,
     Object? player1Moves = null,
@@ -166,16 +157,11 @@ class __$$GameImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as int,
-        player1:
-            null == player1
-                ? _value.player1
-                : player1 // ignore: cast_nullable_to_non_nullable
-                    as String,
-        player2:
-            null == player2
-                ? _value.player2
-                : player2 // ignore: cast_nullable_to_non_nullable
-                    as String,
+        players:
+            null == players
+                ? _value._players
+                : players // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         player1Score:
             null == player1Score
                 ? _value.player1Score
@@ -190,12 +176,12 @@ class __$$GameImplCopyWithImpl<$Res>
             null == player1Moves
                 ? _value._player1Moves
                 : player1Moves // ignore: cast_nullable_to_non_nullable
-                    as List<int>,
+                    as List<Moves>,
         player2Moves:
             null == player2Moves
                 ? _value._player2Moves
                 : player2Moves // ignore: cast_nullable_to_non_nullable
-                    as List<int>,
+                    as List<Moves>,
       ),
     );
   }
@@ -206,13 +192,13 @@ class __$$GameImplCopyWithImpl<$Res>
 class _$GameImpl implements _Game {
   const _$GameImpl({
     required this.id,
-    required this.player1,
-    required this.player2,
+    required final List<String> players,
     required this.player1Score,
     required this.player2Score,
-    required final List<int> player1Moves,
-    required final List<int> player2Moves,
-  }) : _player1Moves = player1Moves,
+    required final List<Moves> player1Moves,
+    required final List<Moves> player2Moves,
+  }) : _players = players,
+       _player1Moves = player1Moves,
        _player2Moves = player2Moves;
 
   factory _$GameImpl.fromJson(Map<String, dynamic> json) =>
@@ -220,25 +206,30 @@ class _$GameImpl implements _Game {
 
   @override
   final int id;
+  final List<String> _players;
   @override
-  final String player1;
-  @override
-  final String player2;
+  List<String> get players {
+    if (_players is EqualUnmodifiableListView) return _players;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_players);
+  }
+
+  // player1, player2
   @override
   final int player1Score;
   @override
   final int player2Score;
-  final List<int> _player1Moves;
+  final List<Moves> _player1Moves;
   @override
-  List<int> get player1Moves {
+  List<Moves> get player1Moves {
     if (_player1Moves is EqualUnmodifiableListView) return _player1Moves;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_player1Moves);
   }
 
-  final List<int> _player2Moves;
+  final List<Moves> _player2Moves;
   @override
-  List<int> get player2Moves {
+  List<Moves> get player2Moves {
     if (_player2Moves is EqualUnmodifiableListView) return _player2Moves;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_player2Moves);
@@ -246,7 +237,7 @@ class _$GameImpl implements _Game {
 
   @override
   String toString() {
-    return 'Game(id: $id, player1: $player1, player2: $player2, player1Score: $player1Score, player2Score: $player2Score, player1Moves: $player1Moves, player2Moves: $player2Moves)';
+    return 'Game(id: $id, players: $players, player1Score: $player1Score, player2Score: $player2Score, player1Moves: $player1Moves, player2Moves: $player2Moves)';
   }
 
   @override
@@ -255,8 +246,7 @@ class _$GameImpl implements _Game {
         (other.runtimeType == runtimeType &&
             other is _$GameImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.player1, player1) || other.player1 == player1) &&
-            (identical(other.player2, player2) || other.player2 == player2) &&
+            const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.player1Score, player1Score) ||
                 other.player1Score == player1Score) &&
             (identical(other.player2Score, player2Score) ||
@@ -276,8 +266,7 @@ class _$GameImpl implements _Game {
   int get hashCode => Object.hash(
     runtimeType,
     id,
-    player1,
-    player2,
+    const DeepCollectionEquality().hash(_players),
     player1Score,
     player2Score,
     const DeepCollectionEquality().hash(_player1Moves),
@@ -301,12 +290,11 @@ class _$GameImpl implements _Game {
 abstract class _Game implements Game {
   const factory _Game({
     required final int id,
-    required final String player1,
-    required final String player2,
+    required final List<String> players,
     required final int player1Score,
     required final int player2Score,
-    required final List<int> player1Moves,
-    required final List<int> player2Moves,
+    required final List<Moves> player1Moves,
+    required final List<Moves> player2Moves,
   }) = _$GameImpl;
 
   factory _Game.fromJson(Map<String, dynamic> json) = _$GameImpl.fromJson;
@@ -314,17 +302,15 @@ abstract class _Game implements Game {
   @override
   int get id;
   @override
-  String get player1;
-  @override
-  String get player2;
+  List<String> get players; // player1, player2
   @override
   int get player1Score;
   @override
   int get player2Score;
   @override
-  List<int> get player1Moves;
+  List<Moves> get player1Moves;
   @override
-  List<int> get player2Moves;
+  List<Moves> get player2Moves;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.

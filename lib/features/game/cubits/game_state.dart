@@ -30,6 +30,9 @@ class GameState extends Equatable {
     this.otherPlayerScore = 0,
     this.gameWinner = GameWinner.none,
     this.gamesPlay = const [],
+    this.comments = "",
+    this.player1 = "",
+    this.player2 = "",
   });
 
   // const GameState.empty()
@@ -57,6 +60,9 @@ class GameState extends Equatable {
   final int otherPlayerScore;
   final GameWinner gameWinner;
   final List<Game> gamesPlay;
+  final String comments;
+  final String player1;
+  final String player2;
 
   @override
   List<Object?> get props => [
@@ -87,6 +93,9 @@ class GameState extends Equatable {
     int? otherPlayerScore,
     GameWinner? gameWinner,
     List<Game>? gamesPlay,
+    String? comments,
+    String? player1,
+    String? player2,
   }) {
     return GameState(
       gameMode: gameMode ?? this.gameMode,
@@ -101,6 +110,9 @@ class GameState extends Equatable {
       otherPlayerScore: otherPlayerScore ?? this.otherPlayerScore,
       gameWinner: gameWinner ?? this.gameWinner,
       gamesPlay: gamesPlay ?? this.gamesPlay,
+      comments: comments ?? this.comments,
+      player1: player1 ?? this.player1,
+      player2: player2 ?? this.player2
     );
   }
 }

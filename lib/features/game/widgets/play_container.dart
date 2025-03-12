@@ -34,7 +34,7 @@ class _PlayContainerState extends State<PlayContainer>
     var mainPlayerMoves = gameState.mainPlayerMoves;
 
     // Listen if game has been won
-    if (gameState.gameWinner != GameWinner.none) {
+    if (gameState.gamesPlay.length == gameState.round) {
       WidgetsBinding.instance.addPostFrameCallback((duration) {
         showDialog(
           context: context,
